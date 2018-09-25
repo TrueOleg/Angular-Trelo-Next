@@ -1,3 +1,15 @@
-<p>
-  sign-in works!
-</p>
+<form class="auth" name="auth" (ngSubmit)="f.form.valid && login()" #f="ngForm" novalidate>
+  <h1 class="title">Login form</h1>
+  <fieldset class="fieldset">
+    <input name="email" type="text" placeholder="email" class="input" [(ngModel)]="model.email" #email="ngModel"
+      required />
+    <input name="pass" type="password" placeholder="password" class="input" [(ngModel)]="model.password" #password="ngModel"
+      required />
+  </fieldset>
+  <fieldset class="fieldset action">
+    <button type="submit" class='button'>LOGIN</button>
+    <nav>
+      <a routerLink="/sign-up" class="link-form">Registrstion</a>
+    </nav>
+  </fieldset>
+</form>

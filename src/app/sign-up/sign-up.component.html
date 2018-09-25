@@ -1,3 +1,16 @@
-<p>
-  sign-up works!
-</p>
+<form class="auth" name="auth" (ngSubmit)="f.form.valid && registration()" #f="ngForm" novalidate>
+  <h1 class="title">REGISTRATION</h1>
+  <fieldset class="fieldset">
+    <input name="email" type="text" placeholder="email" class="input" [(ngModel)]="model.email" #email="ngModel"
+      required />
+    <input name="pass" type="password" placeholder="password" class="input" [(ngModel)]="model.password" #password="ngModel"
+      required />
+    <input name="pass" type="password" placeholder="repeat password" class="input" />
+  </fieldset>
+  <fieldset class="fieldset action">
+    <button type="submit" class='button'>REGISTRATION</button>
+    <nav>
+      <a routerLink="/login" class="link-form">Return to login</a>
+    </nav>
+  </fieldset>
+</form>
