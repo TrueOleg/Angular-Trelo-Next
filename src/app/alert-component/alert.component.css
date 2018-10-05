@@ -1,0 +1,23 @@
+.alert {
+  font-family: "Roboto", "Segoe UI", "Oxygen-Sans", "Ubuntu", "Cantarell",
+    "Helvetica Neue", sans-serif;
+  min-height: 38px;
+  padding: 12px 15px 15px;
+  margin: 5px auto;
+  border-radius: 4px;
+  border-left: 4px solid;
+  opacity: 1;
+  max-width: 90%;
+}
+
+.alert-danger {
+  background: rgba(244, 215, 201, 0.37);
+  color: #d93025;
+  border-color: #d93025;
+}
+
+.alert-success {
+  background: #edf7ee;
+  color: #4caf50;
+  border-color: #4caf50;
+}

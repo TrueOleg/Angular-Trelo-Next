@@ -1,7 +1,6 @@
 .auth {
   background-color: #fff;
   background-image: linear-gradient("to top", #fff, #eee);
-  height: 240px;
   width: 400px;
   margin: -200px 0 0 -230px;
   padding: 30px;
@@ -13,6 +12,10 @@
   box-shadow: 0 0 2px rgba(0, 0, 0, 0.2), 0 1px 1px rgba(0, 0, 0, 0.2),
     0 3px 0 #fff, 0 4px 0 rgba(0, 0, 0, 0.2), 0 6px 0 #fff,
     0 7px 0 rgba(0, 0, 0, 0.2);
+ 
+}
+.is-invalid {
+  border: 1px solid red;
 }
 
 .auth::before {
@@ -46,11 +49,19 @@ input {
   padding: 15px 15px 15px 30px;
   margin: 0 0 10px 0;
   font-size: 22px;
+  outline: none;
   font-family: "Arial", "Helvetica";
   width: 353px; /* 353 + 2 + 45 = 400 */
   border: 1px solid #ccc;
   border-radius: 5px;
   box-shadow: 0 1px 1px #ccc inset, 0 1px 0 #fff;
+}
+
+input:active {
+  background-color: #fff;
+  border-color: #e8c291;
+  outline: none;
+  box-shadow: 0 0 0 1px #e8c291 inset;
 }
 
 input:focus {
@@ -76,4 +87,10 @@ fieldset {
   line-height: 35px;
   margin-left: 10px;
   font-size: 16px;
+}
+
+@media (max-width: 320px) {
+  .auth {
+    width: 100%;
+  }
 }

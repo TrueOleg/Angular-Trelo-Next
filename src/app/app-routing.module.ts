@@ -8,9 +8,11 @@ import { SignUpComponent } from "./sign-up/sign-up.component";
 import { AuthGuard } from "./auth-guard/auth-guard.component";
 
 const routes: Routes = [
-  { path: "", component: DashboardComponent, canActivate: [AuthGuard] },
+  { path: "", redirectTo: "/boards", pathMatch: "full" },
+  { path: "boards", component: DashboardComponent, canActivate: [AuthGuard] },
   { path: "sign-in", component: SignInComponent },
-  { path: "sign-up", component: SignUpComponent }
+  { path: "sign-up", component: SignUpComponent },
+  { path: "**", redirectTo: "/boards" }
 ];
 
 @NgModule({

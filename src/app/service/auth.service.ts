@@ -1,10 +1,14 @@
 import { Injectable } from "@angular/core";
-import { HttpClient, HttpHeaders } from "@angular/common/http";
+import {
+  HttpClient,
+  HttpHeaders,
+  HttpErrorResponse
+} from "@angular/common/http";
 
-import { Observable, of } from "rxjs";
-import { catchError, map, tap } from "rxjs/operators";
+import { Observable, of, throwError } from "rxjs";
+import { catchError, map, tap, flatMap } from "rxjs/operators";
 
-import { User } from "./user";
+import { User } from "../user";
 
 const httpOptions = {
   headers: new HttpHeaders({ "Content-Type": "application/json" })
@@ -16,6 +20,10 @@ export class AuthenticationService {
 
   constructor(private http: HttpClient) {}
 
+  private handleError(error: HttpErrorResponse) {
+    console.log("asasdasdas", error);
+    return throwError(error.error);
+  }
   /** GET hero by id. Will 404 if id not found */
   signIn(login: string, password: string): Observable<User> {
     const url = `${this.authUrl}/signIn?login=${login}&password=${password}`;
@@ -30,7 +38,8 @@ export class AuthenticationService {
         }
 
         return user;
-      })
+      }),
+      catchError(this.handleError)
     );
     // .pipe(
     //   tap(_ => this.log(`fetched hero id=${id}`)),
@@ -42,6 +51,7 @@ export class AuthenticationService {
     const url = `${this.authUrl}/signUp`;
     const body = { email: user.login, password: user.password };
     const data = JSON.stringify(body);
+    console.log("data", body);
     return this.http.post<User>(url, data, httpOptions).pipe(
       map(user => {
         // login successful if there's a jwt token in the response
@@ -53,7 +63,8 @@ export class AuthenticationService {
         }
 
         return user;
-      })
+      }),
+      catchError(this.handleError)
     );
   }
   //   private handleError<T> (operation = 'operation', result?: T) {

@@ -1,16 +1,37 @@
-<form class="auth" name="auth" (ngSubmit)="f.form.valid && registration()" #f="ngForm" novalidate>
+<form class="auth" [formGroup]="registerForm" (ngSubmit)="registration()">
   <h1 class="title">REGISTRATION</h1>
   <fieldset class="fieldset">
-    <input name="email" type="text" placeholder="email" class="input" [(ngModel)]="model.email" #email="ngModel"
-      required />
-    <input name="pass" type="password" placeholder="password" class="input" [(ngModel)]="model.password" #password="ngModel"
-      required />
-    <input name="pass" type="password" placeholder="repeat password" class="input" />
+    <div class="form-group">
+      <input type="text" formControlName="email" placeholder="email" class="form-control" [ngClass]="{ 'is-invalid': loading && f.email.errors }" />
+      <div *ngIf="loading && f.email.errors" class="invalid-feedback">
+        <div *ngIf="f.email.errors.required">Email is required</div>
+        <div *ngIf="f.email.errors.email">Email must be a valid email address</div>
+      </div>
+    </div>
+    <div [formGroup]="passwordsForm">
+      <div class="form-group">
+        <input type="password" formControlName="password" placeholder="password" class="form-control" [ngClass]="{ 'is-invalid': loading && p.password.errors }" />
+      </div>
+      <div *ngIf="loading && p.password.errors" class="invalid-feedback">
+        <div *ngIf="p.password.errors.required">Password is required</div>
+        <div *ngIf="p.password.errors.minlength">Password must be at least 6 characters</div>
+      </div>
+
+      <div class="form-group">
+        <input type="password" formControlName="repeatPassword" placeholder="repeat password" class="form-control"
+          [ngClass]="{ 'is-invalid': loading && p.repeatPassword.errors }" />
+      </div>
+      <div *ngIf="loading && p.repeatPassword.errors" class="invalid-feedback">
+        <div *ngIf="p.repeatPassword.errors?.required">Password is required</div>
+        <div *ngIf="passwordsForm.errors">Does match password</div>
+      </div>
+
+    </div>
   </fieldset>
   <fieldset class="fieldset action">
-    <button type="submit" class='button'>REGISTRATION</button>
+    <button type="submit" class='button'>SUBMIT</button>
     <nav>
-      <a routerLink="/login" class="link-form">Return to login</a>
+      <a routerLink="/sign-in" class="link-form">Sign in</a>
     </nav>
   </fieldset>
 </form>
