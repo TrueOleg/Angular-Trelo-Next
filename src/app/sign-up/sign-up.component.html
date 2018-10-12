@@ -1,4 +1,4 @@
-<form class="auth" [formGroup]="registerForm" (ngSubmit)="registration()">
+<!-- <form class="auth" [formGroup]="registerForm" (ngSubmit)="registration()">
   <h1 class="title">REGISTRATION</h1>
   <fieldset class="fieldset">
     <div class="form-group">
@@ -34,4 +34,51 @@
       <a routerLink="/sign-in" class="link-form">Sign in</a>
     </nav>
   </fieldset>
-</form>
+</form> -->
+<div class="sign-un">
+  <mat-card class="example-card">
+    <mat-card-header>
+      <mat-card-title>Registration</mat-card-title>
+    </mat-card-header>
+    <mat-card-content>
+      <form class="example-form">
+        <mat-form-field class="example-full-width">
+          <input matInput placeholder="Enter email" [formControl]="emailFormControl" [errorStateMatcher]="matcher"
+            ngDefaultControl>
+          <mat-error *ngIf="emailFormControl.hasError('email') && !emailFormControl.hasError('required')">
+            Please enter a valid email address
+          </mat-error>
+          <mat-error *ngIf="emailFormControl.hasError('required')">
+            Email is <strong>required</strong>
+          </mat-error>
+        </mat-form-field>
+      </form>
+      <form class="example-form">
+        <mat-form-field class="example-full-width">
+          <input matInput placeholder="Enter password" [formControl]="passwordFormControl" [errorStateMatcher]="matcher"
+            ngDefaultControl>
+          <mat-error *ngIf="passwordFormControl.hasError('minlength') && !passwordFormControl.hasError('required')">
+            Password must be at least 6 characters
+          </mat-error>
+          <mat-error *ngIf="passwordFormControl.hasError('required')">
+            Password is <strong>required</strong>
+          </mat-error>
+        </mat-form-field>
+      </form>
+      <form class="example-form">
+        <mat-form-field class="example-full-width">
+          <input matInput placeholder="Confirm password" [formControl]="confirmPasswordFormControl" [errorStateMatcher]="matcher"
+            ngDefaultControl>
+          <mat-error *ngIf="passwordFormControl.hasError('required')">
+            Password is <strong>required</strong>
+          </mat-error>
+        </mat-form-field>
+      </form>
+      <mat-spinner [style.display]="loading ? 'block' : 'none'"></mat-spinner>
+    </mat-card-content>
+    <mat-card-actions>
+      <button mat-raised-button (click)="registration()" color="primary">SUBMIT</button>
+      <a mat-button routerLink="/sign-in">back to Sign Ip</a>
+    </mat-card-actions>
+  </mat-card>
+</div>
