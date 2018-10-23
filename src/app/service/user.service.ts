@@ -18,7 +18,7 @@ export class UserService {
 
   constructor(private http: HttpClient) {}
 
-  getUser(token): Observable<User> {
-    const url = `${this.usersUrl}/signIn?login=${login}&password=${password}`;
-  }
+  // getUser(token): Observable<User> {
+  //   const url = `${this.usersUrl}/signIn?login=${login}&password=${password}`;
+  // }
 }
